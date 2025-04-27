@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{%load static%}
+{%block content%}
+    <!-- Header Start -->
+    <div class="container-fluid page-header">
+        <div class="container">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+                <h6 class="text-white text-uppercase" style="font-size: 22px;">{{ place.name }}</h6>
+                <div class="d-inline-flex text-white">
+                    <p class="m-0 text-uppercase"><a class="text-white" href="{%url 'index'%}">Bosh sahifa</a></p>
+                    <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                    <p class="m-0 text-uppercase">Diqqatga sazovor joylar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Blog Detail Start -->
+                    <div class="pb-3">
+                        <div class="bg-white mb-3" style="padding: 30px;">
+                            {{place.description |safe}}
+                            {{place.location |safe}}
+                            {{place.video |safe}}
+                        </div>
+                    </div>
+                    <!-- Blog Detail End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+{%endblock content%}

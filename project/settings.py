@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tour',
+    'ckeditor',
+    'ckeditor_uploader',  # Fayl yuklash uchun kerak bo‘lsa
 ]
 
 MIDDLEWARE = [
@@ -124,6 +126,15 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'allowedContent': True,  # Hamma HTML content'ga ruxsat beradi (iframe, video va boshqalar)
+        'extraAllowedContent': 'iframe[*];video[*];source[*];embed[*]',  # Aniq taglarga ruxsat
+    }
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

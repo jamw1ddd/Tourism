@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{% static 'img/manzara.png' %}" alt="Image" style="height: 700px; object-fit: cover;">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h1 class="text-white text-uppercase mb-md-3">Tabiat</h1>
+                            <p class="text-white mb-md-3" style="font-size: 20px;">
+                                Xushmanzara tog‘lar, gullagan vodiylar, jazirama cho‘llar, daryolar va zilol ko‘llar - bu go‘zallikning barchasidan O‘zbekistonda bahramand bo‘lishingiz mumkin!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{% static 'img/madaniy.jpg' %}" alt="Image" style="height: 700px; object-fit: cover;">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h1 class="text-white text-uppercase mb-md-3">Madaniy meros</h1>
+                            <p class="text-white mb-md-3" style="font-size: 20px;">
+                                O‘zbekiston madaniyati, Markaziy Osiyo xalqlarining ko‘p asrlik an’analari va turmush tarzi bilan chambarchas bog‘liq boy tarixga ega
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-prev-icon mb-n2"></span>
+                </div>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Carousel End -->
+
+    <!-- Destination Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">O'zbekiston shaharlari</h6>
+                <h1>Sayyohlar uchun mashhur yo'nalish</h1>
+            </div>
+            <div class="row">
+                {% for city in cities %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="destination-item position-relative overflow-hidden mb-2">
+                        <img class="img-fluid" src="{{ city.image.url }}" alt="" style="width: 100%; height: 250px; object-fit: cover;">
+                        <a class="destination-overlay text-white text-decoration-none" href="">
+                            <h5 class="text-white">{{city.name}}</h5>
+                            <span>{{city.title}}</span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Destination end -->
+    <style>
+        .package-item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .package-item img {
+            height: 250px; /* Rasm balandligi */
+            object-fit: cover; /* Rasmlarni kesib moslashtiradi */
+            width: 100%;
+        }
+        .package-item .p-4 {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .package-item p {
+            margin-top: auto;
+        }
+    </style>
+    <!-- Packages Start -->
+    <div class="container-fluid py-5">
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-3 pb-3">
+                <h6 class="text-primary text-uppercase" style="letter-spacing: 5px;">O'zbekistonning</h6>
+                <h1>Diqqatga sazovor joylari</h1>
+            </div>
+            <div class="row">
+                {% for place in places %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="package-item bg-white mb-2">
+                        <img class="img-fluid" src="{{ place.image.url }}" alt="{{ place.name }}">
+                        <div class="p-4">
+                            <p class="mb-2">
+                                {{ place.name | safe }}
+                            </p>
+                            <a href="{% url 'place_detail' place.id %}" class="btn btn-primary btn-sm">Batafsil</a>
+                        </div> 
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+    
+            <!-- Barchasini ko'rish tugmasi -->
+            <div class="text-center mt-4">
+                <a href="{% url 'place' %}" class="btn btn-primary py-2 px-4">Barchasini ko'rish</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Packages End -->
+{%endblock content%}
