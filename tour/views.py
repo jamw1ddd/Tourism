@@ -33,13 +33,15 @@ def region_detail(request, pk):
     region = get_object_or_404(Region, pk=pk)
     regions = Region.objects.all()
     cities = City.objects.all()
-    return render(request, 'region_detail.html', {'region': region, 'regions': regions, 'cities': cities})
+    places = Place.objects.all()[:6]
+    return render(request, 'region_detail.html', {'region': region, 'regions': regions, 'cities': cities, 'places': places})
 
 def city_detail(request, pk):
     city = get_object_or_404(City, pk=pk)
     cities = City.objects.all()
     regions = Region.objects.all()
-    return render(request, 'city_detail.html', {'city': city, 'cities': cities, 'regions': regions})
+    places = Place.objects.all()[:6]
+    return render(request, 'city_detail.html', {'city': city, 'cities': cities, 'regions': regions, 'places': places})
 
 def place_detail(request, pk):
     place = get_object_or_404(Place, pk=pk)
